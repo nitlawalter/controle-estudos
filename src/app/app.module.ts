@@ -3,14 +3,37 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { DisciplinaComponent } from './components/disciplina/disciplina.component';
+import { HomeComponent } from './components/home/home.component';
+import { AssuntoComponent } from './components/assunto/assunto.component';
+import { TopicoComponent } from './components/topico/topico.component';
+import { QuestaoComponent } from './components/questao/questao.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormDebugComponent } from './shared/form-debug/form-debug.component';
+import { InputComponent } from './shared/input/input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent,
+    DisciplinaComponent,
+    HomeComponent,
+    AssuntoComponent,
+    TopicoComponent,
+    QuestaoComponent,
+    FormDebugComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

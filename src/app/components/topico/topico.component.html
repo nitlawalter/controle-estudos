@@ -1,0 +1,28 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cadastro de Tópicos</h3>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="salvar()">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras">
+                <input type="text" class="form-control" id="nome"
+                formControlName="nome" placeholder="Insira um nome...">
+              </app-input>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <app-form-debug [form]="formulario"></app-form-debug>
+
+</section>

@@ -1,0 +1,74 @@
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="assets/dist/img/logo-pcdf.jpg" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>Walter Lima</p>
+        <a [routerLink]="['']"><i class="fa fa-circle text-success"></i> Projeto PCDF</a>
+      </div>
+    </div>
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header">MENU</li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-edit"></i> <span>Cadastro</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a [routerLink]="['/disciplina']"><i class="fa fa-circle-o"></i> Disciplina</a></li>
+          <li><a [routerLink]="['/assunto']"><i class="fa fa-circle-o"></i> Assunto</a></li>
+          <li><a [routerLink]="['/topico']"><i class="fa fa-circle-o"></i> Tópico</a></li>
+          <li><a [routerLink]="['/questao']"><i class="fa fa-circle-o"></i> Questão</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Estatística</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Ciclo de Estudo</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Usuário</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Revisão</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Revisar</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-pie-chart"></i>
+          <span>Gráficos de Evolução</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="#"><i class="fa fa-circle-o"></i> Disciplinas</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Assunto por Disciplina</a></li>
+          <li><a href="#"><i class="fa fa-circle-o"></i> Tópico por Disciplina</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#"><i class="fa fa-book"></i> <span>Ciclo de Estudo</span></a></li>
+
+      <li class="header">OUTROS</li>
+      <li><a href="https://www.cebraspe.org.br/concursos/PC_DF_19_ESCRIVAO" target="_blank"><i class="fa fa-circle-o text-red"></i> <span>Página Cebraspe - Escrivão</span></a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Simulados</span></a></li>
+      <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Redação</span></a></li>
+    </ul>
+  </section>
+  <!-- /.sidebar -->
+</aside>
+

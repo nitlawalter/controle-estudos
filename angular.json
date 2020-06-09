@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "controle-estudos"
+    }
+  },
+  "defaultProject": "controle-estudos",
+  "cli": {
+    "analytics": false
+  }
 }

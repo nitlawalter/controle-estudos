@@ -1,0 +1,11 @@
+<div class="form-group" [class.has-sucess]="input.valid && (input.dirty || input.touched)"
+  [class.has-error]="!input.valid && (input.dirty || input.touched)">
+
+  <ng-content></ng-content>
+
+  <span class="help-block" *ngIf="input.valid && (input.dirty || input.touched)">
+    <i class="fa fa-check"></i>Ok</span>
+
+  <span class="help-block" *ngIf="!input.valid && (input.dirty || input.touched)">
+    <i class="fa fa-remove"></i>{{msgErro}}</span>
+</div>
