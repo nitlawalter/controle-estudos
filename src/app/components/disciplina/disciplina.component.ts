@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ResponseApi } from './../../model/response-api';
+import { DisciplinaService } from './../../services/disciplina.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Disciplina } from "src/app/model/Disciplina";
+
 
 @Component({
   selector: 'app-disciplina',
@@ -9,17 +14,65 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 export class DisciplinaComponent implements OnInit {
 
   formulario: FormGroup;
+  disciplina: Disciplina;
+  msgCadastro: string;
+  alert: string;
 
-  constructor(private fb: FormBuilder) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private service: DisciplinaService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
+      id: [null],
       nome: [null, [Validators.required, Validators.minLength(3)]]
+    });
+
+    let id: number = this.route.snapshot.params['id'];
+
+    this.findById(id);
+  }
+
+  findById(id: number){
+    this.service.findById(id).subscribe( (responseApi: ResponseApi) => {
+      this.disciplina = responseApi.data;
+      this.formulario.get('id').setValue(this.disciplina.id);
+      this.formulario.get('nome').setValue(this.disciplina.nome);
+    }, erro => {
+      console.log('erro: ', erro);
     });
   }
 
   salvar() {
-    console.log(this.formulario);
+    this.disciplina = new Disciplina(null, '');
+    this.disciplina.id = this.formulario.get('id').value;
+    this.disciplina.nome = this.formulario.get('nome').value;
+
+    this.service.inserirOuEditar(this.disciplina)
+      .subscribe(
+        (response: ResponseApi) => {
+         this.showMessage('Cadastro realizado com sucesso!', 'success');
+        }, erro => {
+          this.showMessage('Erro ao realizar cadastro!', 'danger');
+          console.log('erro: ', erro);
+        }
+      );
+
+  }
+
+  voltarParaLista() {
+    this.router.navigate(['/disciplina-list']);
+  }
+
+  private showMessage(msg: string, alert: string){
+    this.msgCadastro = msg;
+    this.alert = alert;
+    /*setTimeout(() => {
+      this.msgCadastro = undefined;
+    }, 3000);*/
   }
 
 }

@@ -14,6 +14,8 @@ import { QuestaoComponent } from './components/questao/questao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormDebugComponent } from './shared/form-debug/form-debug.component';
 import { InputComponent } from './shared/input/input.component';
+import { DisciplinaListComponent } from './components/disciplina-list/disciplina-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,15 @@ import { InputComponent } from './shared/input/input.component';
     TopicoComponent,
     QuestaoComponent,
     FormDebugComponent,
-    InputComponent
+    InputComponent,
+    DisciplinaListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

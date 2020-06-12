@@ -1,0 +1,41 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Lista de Disciplinas</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tr>
+              <th style="width: 100px">Código</th>
+              <th>Disciplina</th>
+              <th style="width: 20px">&nbsp;</th>
+              <th style="width: 20px">&nbsp;</th>
+            </tr>
+            <tr *ngFor="let item of lista" >
+              <td style="width: 100px">{{item.id}}</td>
+              <td>{{item.nome}}</td>
+              <td><button class="btn btn-primary btn-sm" (click)="editar(item.id)">Editar</button></td>
+              <td><button class="btn btn-danger btn-sm" (click)="deletar(item.id)">Deletar</button></td>
+            </tr>
+          </table>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">&raquo;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="box-footer">
+      <button type="submit" class="btn btn-primary" [routerLink]="['/disciplina']">Novo</button>
+    </div>
+</section>
