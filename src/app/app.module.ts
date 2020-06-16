@@ -16,6 +16,15 @@ import { FormDebugComponent } from './shared/form-debug/form-debug.component';
 import { InputComponent } from './shared/input/input.component';
 import { DisciplinaListComponent } from './components/disciplina-list/disciplina-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AssuntoListComponent } from './components/assunto-list/assunto-list.component';
+import { TopicoListComponent } from './components/topico-list/topico-list.component';
+import { QuestaoListComponent } from './components/questao-list/questao-list.component';
+import { EstatisticaListComponent } from './components/estatistica-list/estatistica-list.component';
+import { EstatisticaComponent } from './components/estatistica/estatistica.component';
+import { RevisaoComponent } from './components/revisao/revisao.component';
+import { RevisaoDisciplinaComponent } from './components/revisao-disciplina/revisao-disciplina.component';
+import { RevisaoAssuntoComponent } from './components/revisao-assunto/revisao-assunto.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +39,23 @@ import { HttpClientModule } from '@angular/common/http';
     QuestaoComponent,
     FormDebugComponent,
     InputComponent,
-    DisciplinaListComponent
+    DisciplinaListComponent,
+    AssuntoListComponent,
+    TopicoListComponent,
+    QuestaoListComponent,
+    EstatisticaListComponent,
+    EstatisticaComponent,
+    RevisaoComponent,
+    RevisaoDisciplinaComponent,
+    RevisaoAssuntoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

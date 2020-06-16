@@ -1,0 +1,104 @@
+<section class="content">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div class="box box-solid box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Revisão</h3>
+        </div>
+        <form [formGroup]="formulario">
+          <div class="box-body">
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label>Disciplina: <strong>{{disciplinaSelecionada.nome}}</strong></label>
+                <!--<input type="text" class="form-control" formControlName="disciplina" disabled>-->
+              </div>
+              <div class="form-group col-md-4">
+                <label>Assunto: <strong>{{assuntoSelecionado.nome}}</strong></label>
+                <!--<input type="text" class="form-control" formControlName="assunto" disabled>-->
+              </div>
+              <div class="form-group col-md-5">
+                <label>Tópico: <strong>{{questao.topico.nome}}</strong></label>
+                <!--<input type="text" class="form-control" formControlName="topico" disabled>-->
+              </div>
+            </div>
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs ">
+                <li class="pull-left header"><i class="fa fa-th"></i> Questão {{numQuestaoAtual}} de {{totalResgistros}} </li>
+                <li class="active"><a href="#tab_questao" data-toggle="tab">Questão</a></li>
+                <li><a href="#tab_comentario" data-toggle="tab">Comentário</a></li>
+                <li><a href="#tab_resumo" data-toggle="tab">Resumo</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane active" id="tab_questao">
+                  <div class="box" style="height: 300px; overflow: auto;">
+                    <div class="box-header">
+                      <h3 class="box-title">Questão</h3>
+                    </div>
+                    <div class="form-group">
+                      <textarea rows="5" class="form-control" id="questao" formControlName="questao"></textarea>
+                    </div>
+                    <div class="form-inline">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" formControlName="resposta" id="radio1" value="certo">
+                          Certo
+                        </label>
+                      </div>&nbsp;&nbsp;
+                      <div class="radio">
+                        <label>
+                          <input type="radio" formControlName="resposta" id="radio2" value="errado">
+                          Errado
+                        </label>
+                      </div>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-primary" (click)="responder()">Responder</button>
+                    </div><br>
+                    <div class="alert alert-danger " *ngIf="!acertou && resposta" >
+                      <h4><i class="icon fa fa-ban"></i> Errado!</h4>
+                      Estude mais!!!
+                    </div>
+                    <div class="alert alert-success " *ngIf="acertou && resposta">
+                      <h4><i class="icon fa fa-check"></i> Correto!</h4>
+                      Muito bem!!!
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab_comentario">
+                  <div class="box" style="height: 300px; overflow: auto;">
+                    <div class="box-header">
+                      <h3 class="box-title">Comentário</h3>
+                    </div>
+                    <div class="form-group">
+                      <textarea rows="10" class="form-control" id="comentario" formControlName="comentario"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane" id="tab_resumo">
+                  <div class="box" style="height: 300px; overflow: auto;">
+                    <div class="box-header">
+                      <h3 class="box-title">Resumo</h3>
+                    </div>
+                    <div class="form-group">
+                      <textarea rows="10" class="form-control" id="resumo" formControlName="resumo"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary" (click)="primeiro()"><< Primeiro</button>&nbsp;
+              <button type="submit" class="btn btn-primary" (click)="anterior()">< Anterior</button>&nbsp;
+              <button type="submit" class="btn btn-primary" (click)="proximo()">Próximo ></button>&nbsp;
+              <button type="submit" class="btn btn-primary" (click)="ultimo()">Último >></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

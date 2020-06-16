@@ -1,6 +1,8 @@
 export class Disciplina {
+
     constructor(
-        public id: string,
+        public id: number,
         public nome: string
     ){}
+
 }

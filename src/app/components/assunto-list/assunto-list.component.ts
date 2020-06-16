@@ -1,17 +1,16 @@
-import { ResponseApi } from './../../model/response-api';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { DisciplinaService } from 'src/app/services/disciplina.service';
+import { AssuntoService } from 'src/app/services/assunto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+import { ResponseApi } from './../../model/response-api';
 
 @Component({
-  selector: 'app-disciplina-list',
-  templateUrl: './disciplina-list.component.html',
-  styleUrls: ['./disciplina-list.component.css']
+  selector: 'app-assunto-list',
+  templateUrl: './assunto-list.component.html',
+  styleUrls: ['./assunto-list.component.css']
 })
-export class DisciplinaListComponent implements OnInit {
+export class AssuntoListComponent implements OnInit {
 
   formulario: FormGroup;
   lista = [];
@@ -22,10 +21,9 @@ export class DisciplinaListComponent implements OnInit {
   alert: string;
   totalResgistros: number;
 
-
   constructor(
     private router: Router,
-    private service: DisciplinaService,
+    private service: AssuntoService,
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
@@ -42,7 +40,7 @@ export class DisciplinaListComponent implements OnInit {
   }
 
   editar(id: number) {
-    this.router.navigate(['/disciplina', id]);
+    this.router.navigate(['/assunto', id]);
   }
 
   openModalDeletar(id: number, nome: string, template: TemplateRef<any>) {
@@ -54,7 +52,7 @@ export class DisciplinaListComponent implements OnInit {
   deletar() {
     this.service.deletar(this.idDelete).subscribe( (responseApi: ResponseApi) => {
       this.showMessage('Cadastro excluído com sucesso!', 'success');
-      this.findAll();
+      this.findAll();     
       this.modalRef.hide();
     }, erro => {
       console.log('erro: ', erro);
@@ -63,7 +61,7 @@ export class DisciplinaListComponent implements OnInit {
   }
 
   novo() {
-    this.router.navigate(['/disciplina']);
+    this.router.navigate(['/assunto']);
   }
 
   openModal(template: TemplateRef<any>) {
@@ -72,7 +70,7 @@ export class DisciplinaListComponent implements OnInit {
 
   private showMessage(msg: string, alert: string){
     this.msgExclusao = msg;
-    this.alert = alert;
+    this.alert = alert;   
   }
 
 }

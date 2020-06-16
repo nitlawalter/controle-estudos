@@ -1,36 +1,97 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-primary">
+      <div class="box box-solid box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Cadastro de Questões</h3>
         </div>
         <form [formGroup]="formulario" (ngSubmit)="salvar()">
           <div class="box-body">
-            <div class="form-group">
-              <label for="nome">Questão</label>
+            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro">
+              <strong>{{msgCadastro}}</strong>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label>Disciplina</label>
+                <select class="form-control select2" formControlName="disciplina" [compareWith]="compararSelect"
+                  (change)="findAssuntosByDisciplina()">
+                  <option *ngFor="let item of disciplinas" [ngValue]="item">{{ item.nome }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label>Assunto</label>
+                <select class="form-control" formControlName="assunto" [compareWith]="compararSelect"
+                  (change)="findTopicosByAssunto()">
+                  <option *ngFor="let item of assuntos" [ngValue]="item">{{ item.nome }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label>Tópico</label>
+                <select class="form-control" formControlName="topico" [compareWith]="compararSelect">
+                  <option *ngFor="let item of topicos" [ngValue]="item">{{ item.nome }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Questão</h3>
+              </div>
               <app-input label="Questao" msgErro="Campo obrigatório e mínimo de 3 letras">
-                <textarea rows="5" class="form-control" id="nome"
+                <textarea rows="5" class="form-control" id="nome" (keypress)="contarCaracteresQuestao()"
                 formControlName="questao" placeholder="Insira uma questão..."></textarea>
               </app-input>
+              <span>Quantidade de caracteres: {{contadorQuestao}} de {{contadorQuestaoRestam}}</span>
+              <div class="form-inline">
+                <div class="radio">
+                  <label>
+                    <input type="radio" formControlName="gabarito" id="radio1" value="certo">
+                    Certo
+                  </label>
+                </div>
+                &nbsp;&nbsp;
+                <div class="radio">
+                  <label>
+                    <input type="radio" formControlName="gabarito" id="radio2" value="errado">
+                    Errado
+                  </label>
+                </div>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="revisao"
+                formControlName="revisao">&nbsp;
+                <label class="form-check-label" for="revisao">incluir na revisão rápida?</label>
+              </div>
+
             </div>
-            <div class="form-group">
-              <label for="nome">Comentário</label>
+
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Comentário</h3>
+              </div>
               <app-input label="Comentario" msgErro="Campo obrigatório e mínimo de 3 letras">
-                <textarea rows="5" class="form-control" id="nome"
+                <textarea rows="5" class="form-control" id="nome" (keypress)="contarCaracteresComentario()"
                 formControlName="comentario" placeholder="Insira o comentário..."></textarea>
               </app-input>
+              <span>Quantidade de caracteres: {{contadorComentario}} de {{contadorComentarioRestam}}</span>
             </div>
-            <div class="form-group">
-              <label for="nome">Resumo</label>
-              <app-input label="Resumo" msgErro="Campo obrigatório e mínimo de 3 letras">
-                <textarea rows="10" class="form-control" id="nome"
-                formControlName="resumo" placeholder="Insira seu resumo..."></textarea>
-              </app-input>
+
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Resumo</h3>
+                <app-input label="Resumo" msgErro="Campo obrigatório e mínimo de 3 letras">
+                  <textarea rows="10" class="form-control" id="resumo" (keypress)="contarCaracteresResumo()"
+                     formControlName="resumo" placeholder="Insira seu resumo..."></textarea>
+                </app-input>
+                <span>Quantidade de caracteres: {{contadorResumo}} de {{contadorResumoRestam}}</span>
+              </div>
             </div>
+
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
+            <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
           </div>
         </form>
       </div>

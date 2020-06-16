@@ -1,35 +1,30 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-primary">
+      <div class="box  box-solid box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Cadastro de Disciplinas</h3>
         </div>
         <form [formGroup]="formulario" (ngSubmit)="salvar()">
           <div class="box-body">
-            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro" >
+            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro">
               <strong>{{msgCadastro}}</strong>
             </div>
-            <div class="form-group">
-              <label for="codigo">Código</label>
-              <app-input label="Codigo">
-                <input type="text" class="form-control" id="codigo" disabled="true"
-                  formControlName="id" >
-              </app-input>
-            </div>
+
             <div class="form-group">
               <label for="nome">Nome</label>
               <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras">
-                <input type="text" class="form-control" id="nome"
-                formControlName="nome" placeholder="Insira um nome...">
+                <input type="text" class="form-control" id="nome" formControlName="nome"
+                  placeholder="Insira um nome...">
               </app-input>
             </div>
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
-            <button type="submit" class="btn btn-link"(click)="voltarParaLista()">Voltar</button>
+            <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>

@@ -1,0 +1,80 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-solid box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cadastro de Estatística</h3>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="salvar()">
+          <div class="box-body">
+            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro">
+              <strong>{{msgCadastro}}</strong>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <label>Disciplina</label>
+                <select class="form-control" formControlName="disciplina" [compareWith]="compararSelect"
+                  (change)="findAssuntosByDisciplina()">
+                  <option *ngFor="let item of disciplinas" [ngValue]="item">{{ item.nome }}</option>
+                </select>
+              </div>
+              <div class="form-group col-md-8">
+                <label>Assunto</label>
+                <select class="form-control" formControlName="assunto" [compareWith]="compararSelect">
+                  <option *ngFor="let item of assuntos" [ngValue]="item">{{ item.nome }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-3">
+                <label for="acertos">Acertos</label>
+                <app-input label="Acertos" >
+                  <input type="number" class="form-control" id="acertos" formControlName="acertos"
+                    (blur)="calcularTotal()">
+                </app-input>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="erros">Erros</label>
+                <app-input label="Erros" >
+                  <input type="number" class="form-control" id="erros" formControlName="erros"
+                    (blur)="calcularTotal()">
+                </app-input>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="total">Total</label>
+                <app-input label="Total" >
+                  <input type="text" class="form-control" id="total" formControlName="total" disabled>
+                </app-input>
+              </div>
+              <div class="form-group col-md-3">
+                <label for="percentual">Percentual</label>
+                <app-input label="Percentual" >
+                  <input type="text" class="form-control" id="percentual" formControlName="percentual" disabled>
+                </app-input>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-primary progress-bar-striped"
+                    role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="classStyle" [ngClass]="classClass">
+                    <span class="sr-only">40% Complete (success)</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
+            <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!--<app-form-debug [form]="formulario"></app-form-debug>-->
+
+</section>

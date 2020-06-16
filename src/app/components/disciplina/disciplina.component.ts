@@ -1,9 +1,9 @@
+import { Disciplina } from 'src/app/model/disciplina.model';
 import { ResponseApi } from './../../model/response-api';
 import { DisciplinaService } from './../../services/disciplina.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Disciplina } from "src/app/model/Disciplina";
 
 
 @Component({
@@ -55,6 +55,7 @@ export class DisciplinaComponent implements OnInit {
       .subscribe(
         (response: ResponseApi) => {
          this.showMessage('Cadastro realizado com sucesso!', 'success');
+         this.formulario.reset();
         }, erro => {
           this.showMessage('Erro ao realizar cadastro!', 'danger');
           console.log('erro: ', erro);

@@ -3,18 +3,22 @@
     <div class="col-md-12">
       <div class="box box-solid box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Lista de Disciplinas</h3>
+          <h3 class="box-title">Lista de Tópicos</h3>
         </div>
         <div class="box-body">
 
           <div style="height: 300px; overflow: auto;">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
               <tr>
-                <th>Disciplina</th>
+                <th style="width: 200px">Disciplina</th>
+                <th style="width: 200px">Assunto</th>
+                <th >Tópico</th>
                 <th style="width: 20px">&nbsp;</th>
                 <th style="width: 20px">&nbsp;</th>
               </tr>
               <tr *ngFor="let item of lista">
+                <td>{{item.assunto.disciplina.nome}}</td>
+                <td>{{item.assunto.nome}}</td>
                 <td>{{item.nome}}</td>
                 <td><button class="btn btn-primary btn-sm" (click)="editar(item.id)">Editar</button></td>
                 <td><button class="btn btn-danger btn-sm"
@@ -31,7 +35,7 @@
     </div>
   </div>
   <div class="box-footer">
-    <button type="submit" class="btn btn-primary" [routerLink]="['/disciplina']">Novo</button>
+    <button type="submit" class="btn btn-primary" (click)="novo()">Novo</button>
   </div>
 
   <ng-template #template>
@@ -46,7 +50,7 @@
         <strong>{{msgExclusao}}</strong>
       </div>
       <div class="form-group">
-        Deseja realmente excluir a disciplina: <strong>{{nomeDelete}}</strong>
+        Deseja realmente excluir o tópico: <strong>{{nomeDelete}}</strong>
       </div>
       <button type="button" class="btn btn-danger" (click)="deletar()">Confirmar</button>
       <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
@@ -54,3 +58,4 @@
   </ng-template>
 
 </section>
+

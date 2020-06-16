@@ -1,17 +1,16 @@
-import { ResponseApi } from './../../model/response-api';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { DisciplinaService } from 'src/app/services/disciplina.service';
+import { EstatisticaService } from 'src/app/services/estatistica.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+import { ResponseApi } from './../../model/response-api';
 
 @Component({
-  selector: 'app-disciplina-list',
-  templateUrl: './disciplina-list.component.html',
-  styleUrls: ['./disciplina-list.component.css']
+  selector: 'app-estatistica-list',
+  templateUrl: './estatistica-list.component.html',
+  styleUrls: ['./estatistica-list.component.css']
 })
-export class DisciplinaListComponent implements OnInit {
+export class EstatisticaListComponent implements OnInit {
 
   formulario: FormGroup;
   lista = [];
@@ -22,10 +21,9 @@ export class DisciplinaListComponent implements OnInit {
   alert: string;
   totalResgistros: number;
 
-
   constructor(
     private router: Router,
-    private service: DisciplinaService,
+    private service: EstatisticaService,
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
@@ -42,7 +40,7 @@ export class DisciplinaListComponent implements OnInit {
   }
 
   editar(id: number) {
-    this.router.navigate(['/disciplina', id]);
+    this.router.navigate(['/estatistica', id]);
   }
 
   openModalDeletar(id: number, nome: string, template: TemplateRef<any>) {
@@ -63,7 +61,7 @@ export class DisciplinaListComponent implements OnInit {
   }
 
   novo() {
-    this.router.navigate(['/disciplina']);
+    this.router.navigate(['/estatistica']);
   }
 
   openModal(template: TemplateRef<any>) {
@@ -74,5 +72,6 @@ export class DisciplinaListComponent implements OnInit {
     this.msgExclusao = msg;
     this.alert = alert;
   }
+
 
 }

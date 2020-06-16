@@ -1,28 +1,47 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-primary">
+      <div class="box box-solid box-primary">
         <div class="box-header with-border">
           <h3 class="box-title">Cadastro de Tópicos</h3>
         </div>
         <form [formGroup]="formulario" (ngSubmit)="salvar()">
           <div class="box-body">
+            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro">
+              <strong>{{msgCadastro}}</strong>
+            </div>
+
             <div class="form-group">
-              <label for="nome">Nome</label>
-              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras">
-                <input type="text" class="form-control" id="nome"
-                formControlName="nome" placeholder="Insira um nome...">
+              <label>Disciplina</label>
+              <select class="form-control" formControlName="disciplina" [compareWith]="compararSelect"
+                (change)="findAssuntosByDisciplina()">
+                <option *ngFor="let item of disciplinas" [ngValue]="item">{{ item.nome }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Assunto</label>
+              <select class="form-control" formControlName="assunto" [compareWith]="compararSelect">
+                <option *ngFor="let item of assuntos" [ngValue]="item">{{ item.nome }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="nome">Tópico</label>
+              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras e máximo de 60">
+                <input type="text" class="form-control" id="nome" formControlName="nome"
+                  placeholder="Insira um nome...">
               </app-input>
             </div>
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
+            <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
 
-  <app-form-debug [form]="formulario"></app-form-debug>
+  <!--<app-form-debug [form]="formulario"></app-form-debug>-->
 
 </section>

@@ -1,5 +1,5 @@
 import { HOST_API } from './host.api';
-import { Disciplina } from "./../model/Disciplina";
+import { Disciplina } from 'src/app/model/disciplina.model';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
@@ -11,13 +11,10 @@ export class DisciplinaService {
 
   constructor(private http: HttpClient) { }
 
-  inserirOuEditar(obj:Disciplina) {
-    console.log('inserindo disciplina: ' + obj);
-    if(obj.id != null && obj.id != '') {
-      console.log('ALTERAR DISCIPLINA: ' + obj);
+  inserirOuEditar(obj: Disciplina) {    
+    if(obj.id != null) {
       return this.http.put(`${HOST_API}/api/disciplinas`, obj);
     }else{
-      console.log('INSERIR DISCIPLINA: ' + obj);
       obj.id = null;
       return this.http.post(`${HOST_API}/api/disciplinas`, obj);
     }
@@ -27,16 +24,15 @@ export class DisciplinaService {
     return this.http.get(`${HOST_API}/api/disciplinas`);
   }
 
-  findPage(page:number, size:number){
+  findPage(page: number, size: number){
     return this.http.get(`${HOST_API}/api/disciplinas/${page}/${size}`);
   }
 
-  findById(id:number){
+  findById(id: number){
     return this.http.get(`${HOST_API}/api/disciplinas/${id}`);
   }
 
-  deletar(id:number){
+  deletar(id: number){
     return this.http.delete(`${HOST_API}/api/disciplinas/${id}`);
-
   }
 }
