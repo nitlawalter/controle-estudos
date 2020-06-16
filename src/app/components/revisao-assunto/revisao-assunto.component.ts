@@ -29,16 +29,8 @@ export class RevisaoAssuntoComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.formulario = this.fb.group({
-    //  id: [null],
-   //   nome: [null, [Validators.required, Validators.minLength(3)]],
-   //   disciplina: [null, [Validators.required]]
-   // });
-
     let id: number = this.route.snapshot.params['id'];
     this.findAssuntosByDisciplina(id);
-
-    //this.findAllDisciplinas();
   }
 
   findAssuntosByDisciplina(id: number) {
@@ -52,6 +44,10 @@ export class RevisaoAssuntoComponent implements OnInit {
 
   editar(id: number) {
     this.router.navigate(['/revisao', id]);
+  }
+
+  voltarParaLista() {
+    this.router.navigate(['/revisao-disciplina']);
   }
 
 

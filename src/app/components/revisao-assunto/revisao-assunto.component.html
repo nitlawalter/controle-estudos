@@ -17,11 +17,11 @@
                 <i class="fa fa-book"></i>
               </span>
               <span class="text">{{item.nome}}</span>
-              <small class="label label-success">
+              <!--<small class="label label-success">
                 <i class="fa fa-pencil-square-o"></i> 25 questões
-              </small>
-              <div class="tools">
-                 <i class="fa fa-edit" (click)="editar(item.id)"></i>
+              </small>-->
+              <div class="pull-right">
+                 <button class="btn btn-primary btn-sm " (click)="editar(item.id)">Iniciar Revisão</button>
               </div>
             </li>
           </ul>
@@ -35,7 +35,8 @@
 
     </div>
     <div class="box-footer clearfix">
-      <span>Total de registros: {{totalResgistros}}</span>
+      <span>Total de registros: {{totalResgistros}}</span>&nbsp;&nbsp;
+      <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
     </div>
   </div>
 </section>

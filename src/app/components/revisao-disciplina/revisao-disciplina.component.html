@@ -17,12 +17,9 @@
                 <i class="fa fa-book"></i>
               </span>
               <span class="text">{{item.nome}}</span>
-              <small class="label label-success">
-                <i class="fa fa-pencil-square-o"></i> 25 questões
-              </small>
-              <div class="tools">
-                 <i class="fa fa-edit" (click)="editar(item.id)"></i>
-              </div>
+              <div class="pull-right">
+                <button class="btn btn-primary btn-sm " (click)="editar(item.id)">Acessar Assuntos</button>
+             </div>
             </li>
           </ul>
         </div>

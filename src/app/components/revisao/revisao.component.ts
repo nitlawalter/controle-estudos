@@ -29,6 +29,7 @@ export class RevisaoComponent implements OnInit {
   assuntoSelecionado: Assunto;
   resposta: string = null;
   acertou: boolean = false;
+  idDisciplina: number;
 
   mapQuestoes = new Map<number, Questao>();
   numQuestaoAtual: number = 1;
@@ -56,7 +57,7 @@ export class RevisaoComponent implements OnInit {
 
     });
 
-    let id: number = this.route.snapshot.params['id'];
+    let id:number = this.route.snapshot.params['id'];
     this.findByTopicoAssuntoId(id);
 
   }
@@ -75,8 +76,7 @@ export class RevisaoComponent implements OnInit {
         });
 
         this.questao = this.mapQuestoes.get(1);
-        console.log('Questao: ', this.questao);
-        console.log('MapQuestoes: ', this.mapQuestoes);
+        this.idDisciplina = this.questao.topico.assunto.disciplina.id;
         this.preencherFormulario(this.questao);
       }, erro => {
        console.log('erro: ', erro);
@@ -136,7 +136,7 @@ export class RevisaoComponent implements OnInit {
   }
 
   voltarParaLista() {
-    this.router.navigate(['/revisao-assunto/:id']);
+    this.router.navigate(['/revisao-assunto', this.idDisciplina]);
   }
 
   responder() {
