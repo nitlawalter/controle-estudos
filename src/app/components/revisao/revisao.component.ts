@@ -30,6 +30,9 @@ export class RevisaoComponent implements OnInit {
   resposta: string = null;
   acertou: boolean = false;
   idDisciplina: number;
+  mostrarAlertErrada: boolean = false;
+  mostrarAlertCorreta: boolean = false;
+  habilitarBtnResponder: boolean = false;
 
   mapQuestoes = new Map<number, Questao>();
   numQuestaoAtual: number = 1;
@@ -101,7 +104,9 @@ export class RevisaoComponent implements OnInit {
 
   proximo() {
     this.acertou = null;
-    this.resposta = null;
+    this.formulario.get('resposta')?.setValue(null);
+    this.mostrarAlertCorreta = false;
+    this.mostrarAlertErrada = false;
     if (this.numQuestaoAtual < this.totalResgistros){
       this.numQuestaoAtual += 1;
       this.questao = this.mapQuestoes.get(this.numQuestaoAtual);
@@ -111,7 +116,9 @@ export class RevisaoComponent implements OnInit {
 
   anterior() {
     this.acertou = null;
-    this.resposta = null;
+    this.formulario.get('resposta')?.setValue(null);
+    this.mostrarAlertCorreta = false;
+    this.mostrarAlertErrada = false;
     if (this.numQuestaoAtual > 1) {
       this.numQuestaoAtual -= 1;
       this.questao = this.mapQuestoes.get(this.numQuestaoAtual);
@@ -121,7 +128,9 @@ export class RevisaoComponent implements OnInit {
 
   primeiro() {
     this.acertou = null;
-    this.resposta = null;
+    this.formulario.get('resposta')?.setValue(null);
+    this.mostrarAlertCorreta = false;
+    this.mostrarAlertErrada = false;
     this.numQuestaoAtual = 1;
     this.questao = this.mapQuestoes.get(this.numQuestaoAtual);
     this.preencherFormulario(this.mapQuestoes.get(this.numQuestaoAtual));
@@ -129,7 +138,9 @@ export class RevisaoComponent implements OnInit {
 
   ultimo() {
     this.acertou = null;
-    this.resposta = null;
+    this.formulario.get('resposta')?.setValue(null);
+    this.mostrarAlertCorreta = false;
+    this.mostrarAlertErrada = false;
     this.numQuestaoAtual = this.totalResgistros;
     this.questao = this.mapQuestoes.get(this.numQuestaoAtual);
     this.preencherFormulario(this.mapQuestoes.get(this.numQuestaoAtual));
@@ -140,18 +151,21 @@ export class RevisaoComponent implements OnInit {
   }
 
   responder() {
-    console.log('Resposta: ', this.resposta);
     this.resposta = this.formulario.get('resposta').value;
-    console.log('Resposta: ', this.resposta);
-    console.log('acertou inicial: ', this.acertou);
+    console.log(this.resposta);
 
-    if (this.resposta === this.questao.gabarito){
-      this.acertou = true;
-      console.log('acertou: ', this.acertou);
-    }else {
-      this.acertou = false;
-      console.log('errou: ', this.acertou);
+    if (this.resposta != null){
+      if (this.resposta === this.questao.gabarito){
+        this.acertou = true;
+        this.mostrarAlertCorreta = true;
+        this.mostrarAlertErrada = false;
+      }else {
+        this.acertou = false;
+        this.mostrarAlertCorreta = false;
+        this.mostrarAlertErrada = true;
+      }
     }
+
   }
 
   private showMessage(msg: string, alert: string){

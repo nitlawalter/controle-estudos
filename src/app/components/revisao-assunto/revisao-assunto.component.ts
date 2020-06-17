@@ -20,6 +20,7 @@ export class RevisaoAssuntoComponent implements OnInit {
   msgExclusao: string;
   alert: string;
   totalResgistros: number;
+  nomeDisciplina: string;
 
 
   constructor(
@@ -37,9 +38,12 @@ export class RevisaoAssuntoComponent implements OnInit {
     this.service.findAssuntosByDisciplina(id).subscribe((response: ResponseApi) => {
       this.lista = response.data;
       this.totalResgistros = this.lista?.length;
+      this.nomeDisciplina =  this.lista[0].disciplina.nome;
     }, erro => {
       console.log('Erro no FindAll...' + erro);
     });
+
+
   }
 
   editar(id: number) {

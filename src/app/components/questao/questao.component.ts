@@ -102,6 +102,9 @@ export class QuestaoComponent implements OnInit {
       .subscribe(
         (response: ResponseApi) => {
          this.showMessage('Cadastro realizado com sucesso!', 'success');
+         this.formulario.reset();
+         this.topicos = null;
+         this.assuntos = null;
         }, erro => {
           this.showMessage('Erro ao realizar cadastro!', 'danger');
           console.log('erro: ', erro);
@@ -131,10 +134,12 @@ export class QuestaoComponent implements OnInit {
   }
 
   findAssuntosByDisciplina() {
-    console.log('buscando assuntos por disciplina: ', this.formulario.get('topico').value);
-    if (!this.disciplinaSelecionada){
-      this.disciplinaSelecionada = this.formulario.get('disciplina').value;
-    }
+    console.log('buscando assuntos por disciplina: ', this.formulario.get('disciplina').value);
+    console.log('disciplina selecionada: ', this.disciplinaSelecionada);
+
+    this.disciplinaSelecionada = this.formulario.get('disciplina').value;
+    console.log('selecionou: ', this.disciplinaSelecionada);
+
     this.serviceAssunto.findAssuntosByDisciplina(this.disciplinaSelecionada.id).subscribe(
       (response: ResponseApi) => {
         this.assuntos = response.data;
@@ -143,13 +148,12 @@ export class QuestaoComponent implements OnInit {
         console.log('Erro no FindAll...' + erro);
       }
     );
-    this.findTopicosByAssunto();
   }
 
   findTopicosByAssunto() {
-    if (!this.assuntoSelecionado){
-      this.assuntoSelecionado = this.formulario.get('assunto').value;
-    }
+    this.assuntoSelecionado = this.formulario.get('assunto').value;
+    console.log('Assunto selecionado:', this.assuntoSelecionado);
+
     this.serviceTopico.findTopicosByAssunto(this.assuntoSelecionado.id).subscribe(
       (response: ResponseApi) => {
         this.topicos = response.data;

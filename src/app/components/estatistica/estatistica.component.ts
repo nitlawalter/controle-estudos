@@ -60,6 +60,7 @@ export class EstatisticaComponent implements OnInit {
         this.formulario.get('total').setValue(this.estatistica.total);
         this.formulario.get('percentual').setValue(this.estatistica.percentual);
         this.formulario.get('assunto').setValue(this.estatistica.assunto);
+        this.formulario.get('disciplina').setValue(this.estatistica.assunto.disciplina);
         this.disciplinaSelecionada = this.estatistica.assunto.disciplina;
         this.findAssuntosByDisciplina();
       }, erro => {

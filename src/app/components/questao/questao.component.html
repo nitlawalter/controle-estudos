@@ -40,7 +40,7 @@
               </div>
               <app-input label="Questao" msgErro="Campo obrigatório e mínimo de 3 letras">
                 <textarea rows="5" class="form-control" id="nome" (keypress)="contarCaracteresQuestao()"
-                formControlName="questao" placeholder="Insira uma questão..."></textarea>
+                formControlName="questao" placeholder="Insira uma questão..." style="font-weight: bold;"></textarea>
               </app-input>
               <span>Quantidade de caracteres: {{contadorQuestao}} de {{contadorQuestaoRestam}}</span>
               <div class="form-inline">
@@ -72,7 +72,7 @@
               </div>
               <app-input label="Comentario" msgErro="Campo obrigatório e mínimo de 3 letras">
                 <textarea rows="5" class="form-control" id="nome" (keypress)="contarCaracteresComentario()"
-                formControlName="comentario" placeholder="Insira o comentário..."></textarea>
+                formControlName="comentario" placeholder="Insira o comentário..." style="font-weight: bold;"></textarea>
               </app-input>
               <span>Quantidade de caracteres: {{contadorComentario}} de {{contadorComentarioRestam}}</span>
             </div>
@@ -82,7 +82,7 @@
                 <h3 class="box-title">Resumo</h3>
                 <app-input label="Resumo" msgErro="Campo obrigatório e mínimo de 3 letras">
                   <textarea rows="10" class="form-control" id="resumo" (keypress)="contarCaracteresResumo()"
-                     formControlName="resumo" placeholder="Insira seu resumo..."></textarea>
+                     formControlName="resumo" placeholder="Insira seu resumo..." style="font-weight: bold;"></textarea>
                 </app-input>
                 <span>Quantidade de caracteres: {{contadorResumo}} de {{contadorResumoRestam}}</span>
               </div>
@@ -98,6 +98,6 @@
     </div>
   </div>
 
-  <app-form-debug [form]="formulario"></app-form-debug>
+  <!--<app-form-debug [form]="formulario"></app-form-debug>-->
 
 </section>

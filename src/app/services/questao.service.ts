@@ -36,6 +36,10 @@ export class QuestaoService {
     return this.http.get(`${HOST_API}/api/questoes/topico/assunto/${id}`);
   }
 
+  findByTopicoAssuntoDisciplinaId(id: number){
+    return this.http.get(`${HOST_API}/api/questoes/topico/assunto/disciplina/${id}`);
+  }
+
   deletar(id: number){
     return this.http.delete(`${HOST_API}/api/questoes/${id}`);
   }

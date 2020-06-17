@@ -5,19 +5,45 @@
         <div class="box-header with-border">
           <h3 class="box-title">Lista de Questões</h3>
         </div>
+
         <div class="box-body">
+          <form [formGroup]="formulario">
+            <div class="row">
+              <div class="form-group">
+                <div class="form-group col-md-3">
+                  <select class="form-control select2" formControlName="disciplina" [compareWith]="compararSelect"
+                    (change)="findAssuntosByDisciplina()">
+                    <option *ngFor="let item of disciplinas" [ngValue]="item">{{ item.nome }}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-5">
+                  <select class="form-control" formControlName="assunto" [compareWith]="compararSelect">
+                    <option *ngFor="let item of assuntos" [ngValue]="item">{{ item.nome }}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3">
+                  <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid"
+                    (click)="pesquisar()">Pesquisar</button>
+                </div>
+              </div>
+            </div>
+          </form>
 
           <div style="height: 300px; overflow: auto;">
             <table class="table table-bordered table-hover">
               <tr>
-                <th style="width: 200px">Tópico</th>
+                <th style="width: 200px">Disciplina</th>
+                <th style="width: 250px">Assunto</th>
+                <th style="width: 250px">Tópico</th>
                 <th>Questão</th>
                 <th style="width: 20px">&nbsp;</th>
                 <th style="width: 20px">&nbsp;</th>
               </tr>
               <tr *ngFor="let item of lista">
+                <td>{{item.topico.assunto.disciplina.nome}}</td>
+                <td>{{item.topico.assunto.nome}}</td>
                 <td>{{item.topico.nome}}</td>
-                <td>{{item.questao | slice:0:100}}...</td>
+                <td>{{item.questao | slice:0:50}}...</td>
                 <td><button class="btn btn-primary btn-sm" (click)="editar(item.id)">Editar</button></td>
                 <td><button class="btn btn-danger btn-sm"
                     (click)="openModalDeletar(item.id, item.nome, template)">Deletar</button></td>
@@ -56,4 +82,3 @@
   </ng-template>
 
 </section>
-
