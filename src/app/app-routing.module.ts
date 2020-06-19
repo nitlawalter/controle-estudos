@@ -12,12 +12,15 @@ import { QuestaoComponent } from './components/questao/questao.component';
 import { HomeComponent } from './components/home/home.component';
 import { DisciplinaComponent } from './components/disciplina/disciplina.component';
 import { EstatisticaComponent } from './components/estatistica/estatistica.component';
+import { MetaComponent } from './components/meta/meta.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MetaListComponent } from './components/meta-list/meta-list.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'disciplina', component: DisciplinaComponent},
   { path: 'disciplina/:id', component: DisciplinaComponent},
   { path: 'disciplina-list', component: DisciplinaListComponent},
@@ -35,7 +38,10 @@ const routes: Routes = [
   { path: 'estatistica-list', component: EstatisticaListComponent},
   { path: 'revisao-disciplina', component: RevisaoDisciplinaComponent},
   { path: 'revisao-assunto/:id', component: RevisaoAssuntoComponent},
-  { path: 'revisao/:id', component: RevisaoComponent}
+  { path: 'revisao/:id', component: RevisaoComponent},
+  { path: 'meta', component: MetaComponent},
+  { path: 'meta/:id', component: MetaComponent},
+  { path: 'meta-list', component: MetaListComponent}
 ];
 
 @NgModule({

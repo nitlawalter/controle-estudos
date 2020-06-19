@@ -25,6 +25,8 @@ import { EstatisticaComponent } from './components/estatistica/estatistica.compo
 import { RevisaoComponent } from './components/revisao/revisao.component';
 import { RevisaoDisciplinaComponent } from './components/revisao-disciplina/revisao-disciplina.component';
 import { RevisaoAssuntoComponent } from './components/revisao-assunto/revisao-assunto.component';
+import { MetaComponent } from './components/meta/meta.component';
+import { MetaListComponent } from './components/meta-list/meta-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { RevisaoAssuntoComponent } from './components/revisao-assunto/revisao-as
     EstatisticaComponent,
     RevisaoComponent,
     RevisaoDisciplinaComponent,
-    RevisaoAssuntoComponent
+    RevisaoAssuntoComponent,
+    MetaComponent,
+    MetaListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,258 @@
-<p>home works!</p>
+<section>
+
+<h2 class="page-header">Meta Semanal de Estudos</h2>  
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">SEGUNDA</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaSegunda">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>        
+        </table>      
+      </div>    
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">TERÇA</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaTerca">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>         
+        </table>      
+      </div>    
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">QUARTA</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaQuarta">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>       
+        </table>     
+      </div>    
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">QUINTA</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaQuinta">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>         
+        </table>    
+      </div>    
+    </div>
+  </div>
+
+</div> <!--Fim Row -->
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">SEXTA</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaSexta">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>        
+        </table>    
+      </div>    
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">SÁBADO</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaSabado">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>        
+        </table>    
+      </div>    
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <div class="box box-widget widget-user-2">
+          <div class="widget-user-header bg-blue">
+            <div class="widget-user-image">
+              <img class="img-circle" src="assets/dist/img/metas.jpg" alt="User Avatar">
+            </div>
+            <h3 class="widget-user-username">DOMINGO</h3>          
+          </div>
+        </div>
+      </div>
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <tr>            
+            <th>Disciplina</th>     
+            <th></th>  
+            <th style="width: 40px">Estudo</th>            
+          </tr>
+          <tr *ngFor="let item of listaDomingo">            
+            <td>{{item.nome}}</td>            
+            <td>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" (click)="onCheckbox(item)" [checked]="item.finalizada" >
+                </label>
+              </div>
+            </td> 
+            <td><span class="badge bg-green">{{item.estudo}}</span></td>
+          </tr>            
+        </table>    
+      </div>    
+    </div>
+  </div>  
+
+</div> <!--Fim Row -->
+  
+
+</section>
+

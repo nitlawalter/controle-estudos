@@ -70,7 +70,7 @@
               <div class="box-header">
                 <h3 class="box-title">Comentário</h3>
               </div>
-              <app-input label="Comentario" msgErro="Campo obrigatório e mínimo de 3 letras">
+              <app-input label="Comentario" msgErro="mínimo de 3 letras">
                 <textarea rows="5" class="form-control" id="nome" (keypress)="contarCaracteresComentario()"
                 formControlName="comentario" placeholder="Insira o comentário..." style="font-weight: bold;"></textarea>
               </app-input>
@@ -80,7 +80,7 @@
             <div class="box">
               <div class="box-header">
                 <h3 class="box-title">Resumo</h3>
-                <app-input label="Resumo" msgErro="Campo obrigatório e mínimo de 3 letras">
+                <app-input label="Resumo" msgErro="mínimo de 3 letras">
                   <textarea rows="10" class="form-control" id="resumo" (keypress)="contarCaracteresResumo()"
                      formControlName="resumo" placeholder="Insira seu resumo..." style="font-weight: bold;"></textarea>
                 </app-input>

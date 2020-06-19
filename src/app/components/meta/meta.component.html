@@ -1,0 +1,46 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-solid box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cadastro de Metas</h3>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="salvar()">
+          <div class="box-body">
+            <div class="alert alert-{{alert}}" role="alert" *ngIf="msgCadastro">
+              <strong>{{msgCadastro}}</strong>
+            </div>
+
+            <div class="form-group">
+              <label>Dia</label>
+              <select class="form-control" formControlName="dia" [compareWith]="compararSelect">
+                <option *ngFor="let item of listaDias" [ngValue]="item">{{ item }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="nome">Nome</label>
+              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras">
+                <input type="text" class="form-control" id="nome" formControlName="nome"
+                  placeholder="Insira um nome...">
+              </app-input>
+            </div>
+            <div class="form-group">
+              <label>Estudo</label>
+              <select class="form-control" formControlName="estudo" [compareWith]="compararSelect">
+                <option *ngFor="let item of listaEstudo" [ngValue]="item">{{ item }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Salvar</button>
+            <button type="submit" class="btn btn-link" (click)="voltarParaLista()">Voltar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <app-form-debug [form]="formulario"></app-form-debug>
+
+</section>

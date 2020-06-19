@@ -49,8 +49,8 @@ export class QuestaoComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [null],
       questao: [null, [Validators.required, Validators.maxLength(500)]],
-      comentario: [null, [Validators.required, Validators.maxLength(1000)]],
-      resumo: [null, [Validators.required, Validators.maxLength(1000)]],
+      comentario: [null, [Validators.maxLength(1000)]],
+      resumo: [null, [Validators.maxLength(1000)]],
       gabarito: [null, [Validators.required]],
       disciplina: [null, [Validators.required]],
       assunto: [null, [Validators.required]],

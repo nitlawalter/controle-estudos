@@ -28,6 +28,10 @@ export class TopicoService {
     return this.http.get(`${HOST_API}/api/topicos/assunto/${id}`);
   }
 
+  findTopicosByAssuntoDisciplina(id: number){
+    return this.http.get(`${HOST_API}/api/topicos/assunto/disciplina/${id}`);
+  }
+
   findPage(page: number, size: number){
     return this.http.get(`${HOST_API}/api/topicos/${page}/${size}`);
   }

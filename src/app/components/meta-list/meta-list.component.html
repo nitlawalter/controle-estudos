@@ -3,44 +3,35 @@
     <div class="col-md-12">
       <div class="box box-solid box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title">Lista de Tópicos</h3>
+          <h3 class="box-title">Lista de Metas</h3>
         </div>
         <div class="box-body">
           <form [formGroup]="formulario">
             <div class="row">
               <div class="form-group">
                 <div class="form-group col-md-3">
-                  <select class="form-control select2" formControlName="disciplina" [compareWith]="compararSelect"
-                    (change)="findAssuntosByDisciplina()">
-                    <option *ngFor="let item of disciplinas" [ngValue]="item">{{ item.nome }}</option>
+                  <select class="form-control select2" formControlName="dia" [compareWith]="compararSelect"
+                    (change)="findMetasByDia()">
+                    <option *ngFor="let item of listaDias" [ngValue]="item">{{ item }}</option>
                   </select>
-                </div>
-                <div class="form-group col-md-5">
-                  <select class="form-control" formControlName="assunto" [compareWith]="compararSelect">
-                    <option *ngFor="let item of assuntos" [ngValue]="item">{{ item.nome }}</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-3">
-                  <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid"
-                    (click)="pesquisar()">Pesquisar</button>
-                </div>
+                </div>            
               </div>
             </div>
           </form>
 
           <div style="height: 300px; overflow: auto;">
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered">
               <tr>
-                <th style="width: 200px">Disciplina</th>
-                <th style="width: 250px">Assunto</th>
-                <th >Tópico</th>
+                <th>Dia</th>
+                <th>Nome</th>
+                <th>Estudo</th>
                 <th style="width: 20px">&nbsp;</th>
                 <th style="width: 20px">&nbsp;</th>
               </tr>
               <tr *ngFor="let item of lista">
-                <td>{{item.assunto.disciplina.nome}}</td>
-                <td>{{item.assunto.nome}}</td>
+                <td>{{item.dia}}</td>
                 <td>{{item.nome}}</td>
+                <td>{{item.estudo}}</td>
                 <td><button class="btn btn-primary btn-sm" (click)="editar(item.id)">Editar</button></td>
                 <td><button class="btn btn-danger btn-sm"
                     (click)="openModalDeletar(item.id, item.nome, template)">Deletar</button></td>
@@ -71,7 +62,7 @@
         <strong>{{msgExclusao}}</strong>
       </div>
       <div class="form-group">
-        Deseja realmente excluir o tópico: <strong>{{nomeDelete}}</strong>
+        Deseja realmente excluir o assunto: <strong>{{nomeDelete}}</strong>
       </div>
       <button type="button" class="btn btn-danger" (click)="deletar()">Confirmar</button>
       <button type="button" class="btn btn-secondary" (click)="modalRef.hide()">Cancelar</button>
@@ -79,4 +70,3 @@
   </ng-template>
 
 </section>
-

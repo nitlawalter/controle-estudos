@@ -33,6 +33,12 @@ export class RevisaoComponent implements OnInit {
   mostrarAlertErrada: boolean = false;
   mostrarAlertCorreta: boolean = false;
   habilitarBtnResponder: boolean = false;
+  classStyle = {width: ''};
+  classClass = 'progress-bar progress-bar-green';
+  acertos: number = 0;
+  erros: number = 0;
+  total: number = 0;
+  percentual: string = null;
 
   mapQuestoes = new Map<number, Questao>();
   numQuestaoAtual: number = 1;
@@ -56,7 +62,11 @@ export class RevisaoComponent implements OnInit {
       disciplina: [null, [Validators.required]],
       assunto: [null, [Validators.required]],
       topico: [null, [Validators.required]],
-      resposta: [null]
+      resposta: [null],
+      acertos: [null],
+      erros: [null],
+      total: [null],
+      percentual: [null]
 
     });
 
@@ -159,10 +169,12 @@ export class RevisaoComponent implements OnInit {
         this.acertou = true;
         this.mostrarAlertCorreta = true;
         this.mostrarAlertErrada = false;
+        this.calcularTotal(this.acertou);
       }else {
         this.acertou = false;
         this.mostrarAlertCorreta = false;
         this.mostrarAlertErrada = true;
+        this.calcularTotal(this.acertou);
       }
     }
 
@@ -171,6 +183,45 @@ export class RevisaoComponent implements OnInit {
   private showMessage(msg: string, alert: string){
     this.msgCadastro = msg;
     this.alert = alert;
+  }
+
+  calcularTotal(flag: boolean) {
+
+    if(flag){
+      this.acertos += 1;
+    } else {
+      this.erros += 1;
+    }
+
+    let acertos: number = 0;
+    let erros: number = 0;
+    let total: number = 0;
+    let percentual: number = 0;
+
+    acertos = this.acertos;
+    this.formulario.get('acertos').setValue(0);
+    erros = this.erros;
+    this.formulario.get('erros').setValue(0);
+
+    if (acertos >= 0 && erros >= 0){
+      total = acertos + erros;
+
+      percentual = Math.round((acertos / total) * 100);
+      this.total = total;
+      this.percentual = percentual + '%';
+      this.formulario.get('percentual').setValue(percentual + '%');
+      this.classStyle.width = percentual + '%';
+      console.log('percentual: ', percentual);
+
+      if (percentual >= 80) {
+        console.log('verde ', percentual);
+        this.classClass = 'progress-bar progress-bar-green';
+      } else {
+        console.log('vermelho ', percentual);
+        this.classClass = 'progress-bar progress-bar-red';
+      }
+
+    }
   }
 
 }

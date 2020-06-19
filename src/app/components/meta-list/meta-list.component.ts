@@ -1,18 +1,16 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AssuntoService } from 'src/app/services/assunto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ResponseApi } from './../../model/response-api';
-import { Disciplina } from 'src/app/model/disciplina.model';
-import { DisciplinaService } from 'src/app/services/disciplina.service';
+import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
-  selector: 'app-assunto-list',
-  templateUrl: './assunto-list.component.html',
-  styleUrls: ['./assunto-list.component.css']
+  selector: 'app-meta-list',
+  templateUrl: './meta-list.component.html',
+  styleUrls: ['./meta-list.component.css']
 })
-export class AssuntoListComponent implements OnInit {
+export class MetaListComponent implements OnInit {
 
   formulario: FormGroup;
   lista = [];
@@ -22,23 +20,23 @@ export class AssuntoListComponent implements OnInit {
   msgExclusao: string;
   alert: string;
   totalResgistros: number;
-  disciplinaSelecionada: Disciplina;
-  disciplinas = [];
+  diaSelecionado: string;
+  listaDias = ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'];
+  listaEstudo = ['Questões', 'Lei seca', 'Resumo', 'Simulado', 'Redação'];
+
 
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private service: AssuntoService,
-    private serviceDisciplina: DisciplinaService,
+    private service: MetaService,
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    //this.findAll();
     this.formulario = this.fb.group({
-      disciplina: [null, [Validators.required]]
+      dia: [null, [Validators.required]]
     });
-    this.findAllDisciplinas();
+    
   }
 
   findAll() {
@@ -51,7 +49,7 @@ export class AssuntoListComponent implements OnInit {
   }
 
   editar(id: number) {
-    this.router.navigate(['/assunto', id]);
+    this.router.navigate(['/meta', id]);
   }
 
   openModalDeletar(id: number, nome: string, template: TemplateRef<any>) {
@@ -72,7 +70,7 @@ export class AssuntoListComponent implements OnInit {
   }
 
   novo() {
-    this.router.navigate(['/assunto']);
+    this.router.navigate(['/meta']);
   }
 
   openModal(template: TemplateRef<any>) {
@@ -84,25 +82,17 @@ export class AssuntoListComponent implements OnInit {
     this.alert = alert;
   }
 
-  findAllDisciplinas() {
-    this.serviceDisciplina.findAll().subscribe(
-      (response: ResponseApi) => {
-        this.disciplinas = response.data;
-        console.log(this.disciplinas);
-      }, erro => {
-        console.log('Erro no FindAll...' + erro);
-      }
-    );
+  getDias() {
   }
 
-  findAssuntosByDisciplina() {
-    console.log('buscando assuntos por disciplina: ', this.formulario.get('disciplina').value);
-    console.log('disciplina selecionada: ', this.disciplinaSelecionada);
+  findMetasByDia() {
+    console.log('buscando metas por dia: ', this.formulario.get('dia').value);
+    console.log('dia selecionada: ', this.diaSelecionado);
 
-    this.disciplinaSelecionada = this.formulario.get('disciplina').value;
-    console.log('selecionou: ', this.disciplinaSelecionada);
+    this.diaSelecionado = this.formulario.get('dia').value;
+    console.log('selecionou: ', this.diaSelecionado);
 
-    this.service.findAssuntosByDisciplina(this.disciplinaSelecionada.id).subscribe(
+    this.service.findMetasByDia(this.diaSelecionado).subscribe(
       (response: ResponseApi) => {
         this.lista = response.data;
         this.totalResgistros = this.lista?.length;
@@ -112,13 +102,13 @@ export class AssuntoListComponent implements OnInit {
     );
   }
 
-  pesquisar() {
-    this.disciplinaSelecionada = this.formulario.get('disciplina').value;
+  /*pesquisar() {
+    this.diaSelecionado = this.formulario.get('dia').value;
     this.lista = null;
-    console.log('disciplina selecionada: ', this.disciplinaSelecionada);
+    console.log('dia selecionada: ', this.diaSelecionado);
 
-    if (this.disciplinaSelecionada != null){
-      this.pesquisarPorDisciplina(this.disciplinaSelecionada.id);
+    if (this.diaSelecionado != null){
+      this.pesquisarPorDisciplina(this.diaSelecionado.id);
     } else {
       console.log('não pesquisar nada');
     }
@@ -134,10 +124,11 @@ export class AssuntoListComponent implements OnInit {
         console.log('Erro no FindAll...' + erro);
       }
     );
-  }
+  }*/
 
   compararSelect(obj1, obj2){
     return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2;
   }
+
 
 }

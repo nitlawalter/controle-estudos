@@ -24,6 +24,14 @@ export class EstatisticaService {
     return this.http.get(`${HOST_API}/api/estatisticas`);
   }
 
+  findByAssuntoId(id: number){
+    return this.http.get(`${HOST_API}/api/estatisticas/assunto/${id}`);
+  }
+
+  findByAssuntoDisciplinaId(id: number){
+    return this.http.get(`${HOST_API}/api/estatisticas/assunto/disciplina/${id}`);
+  }
+
   findPage(page: number, size: number){
     return this.http.get(`${HOST_API}/api/estatisticas/${page}/${size}`);
   }
