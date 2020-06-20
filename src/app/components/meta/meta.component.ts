@@ -13,8 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MetaComponent implements OnInit {
 
-  listaDias = ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'];
-  listaEstudo = ['Questões', 'Lei seca', 'Resumo', 'Simulado', 'Redação'];
+  listaDias = [];
+  listaEstudo = [];
   formulario: FormGroup;
   meta: Meta;
   msgCadastro: string;
@@ -30,13 +30,23 @@ export class MetaComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.fb.group({
       id: [null],
-      nome: [null, [Validators.required, Validators.minLength(3)]],
+      nome: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       dia: [null, [Validators.required]],
       estudo: [null, [Validators.required]]
     });
 
     let id: number = this.route.snapshot.params['id'];
+    this.getListaDias();
+    this.getListaEstudo();
     this.findById(id);
+  }
+
+  getListaDias() {
+    this.listaDias = ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'];
+  }
+
+  getListaEstudo() {
+    this.listaEstudo = ['Questões', 'Lei seca', 'Resumo', 'PDF', 'Simulado', 'Redação'];
   }
 
   findById(id: number){
@@ -87,9 +97,7 @@ export class MetaComponent implements OnInit {
   }
 
   compararSelect(obj1, obj2){
-    return obj1 && obj2 ? (obj1.id === obj2.id) : obj1 === obj2;
+    return obj1 && obj2 ? (obj1 === obj2) : obj1 === obj2;
   }
-
-
 
 }

@@ -80,21 +80,38 @@ export class RevisaoComponent implements OnInit {
       (responseApi: ResponseApi) => {
         this.questoes = responseApi.data;
         this.totalResgistros = this.questoes?.length;
+        console.log('registros ', this.totalResgistros);
+        
+        if (this.totalResgistros > 0){
+          let i: number = 1;
+          this.questoes.forEach(element => {
+            this.questao = element;
+            this.mapQuestoes.set(i, element);
+            i = i + 1;
+          });
 
-        let i: number = 1;
-        this.questoes.forEach(element => {
-          this.questao = element;
-          this.mapQuestoes.set(i, element);
-          i = i + 1;
-        });
+          this.questao = this.mapQuestoes.get(1);
+          this.idDisciplina = this.questao.topico.assunto.disciplina.id;
+          this.preencherFormulario(this.questao);
+        } else {
+          this.pesquisarAssuntoPorId(id);            
+        }      
 
-        this.questao = this.mapQuestoes.get(1);
-        this.idDisciplina = this.questao.topico.assunto.disciplina.id;
-        this.preencherFormulario(this.questao);
       }, erro => {
        console.log('erro: ', erro);
       }
     );
+  }
+
+  pesquisarAssuntoPorId(id: number){
+    this.serviceAssunto.findById(id).subscribe( (responseApi: ResponseApi) => {
+      this.assuntoSelecionado = responseApi.data;
+      this.formulario.get('assunto').setValue(this.assuntoSelecionado.nome);
+      this.disciplinaSelecionada = this.assuntoSelecionado.disciplina;
+      this.idDisciplina = this.assuntoSelecionado.disciplina.id;
+    }, erro => {
+      console.log('erro: ', erro);
+    });
   }
 
   preencherFormulario(questao: Questao) {

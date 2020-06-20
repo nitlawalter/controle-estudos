@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
               <label for="nome">Nome</label>
-              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 letras">
+              <app-input label="Nome" msgErro="Campo obrigatório e mínimo de 3 e máximo de 15 letras">
                 <input type="text" class="form-control" id="nome" formControlName="nome"
                   placeholder="Insira um nome...">
               </app-input>
@@ -41,6 +41,6 @@
     </div>
   </div>
 
-  <app-form-debug [form]="formulario"></app-form-debug>
+  <!--<app-form-debug [form]="formulario"></app-form-debug>-->
 
 </section>

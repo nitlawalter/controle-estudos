@@ -10,15 +10,15 @@
           <div class="box-body">
             <div class="row">
               <div class="form-group col-md-3">
-                <label>Disciplina: <strong>{{disciplinaSelecionada.nome}}</strong></label>
+                <label>Disciplina: <strong>{{disciplinaSelecionada?.nome}}</strong></label>
                 <!--<input type="text" class="form-control" formControlName="disciplina" disabled>-->
               </div>
               <div class="form-group col-md-4">
-                <label>Assunto: <strong>{{assuntoSelecionado.nome}}</strong></label>
+                <label>Assunto: <strong>{{assuntoSelecionado?.nome}}</strong></label>
                 <!--<input type="text" class="form-control" formControlName="assunto" disabled>-->
               </div>
               <div class="form-group col-md-5">
-                <label>Tópico: <strong>{{questao.topico.nome}}</strong></label>
+                <label>Tópico: <strong>{{questao?.topico.nome}}</strong></label>
                 <!--<input type="text" class="form-control" formControlName="topico" disabled>-->
               </div>
             </div>
@@ -46,7 +46,10 @@
                   </div>
                 </div>
             </div>
-            <div class="nav-tabs-custom">
+            <div *ngIf="totalResgistros === 0">
+              <label style="color: crimson;"><strong>Não existe questões para o assunto selecionado.</strong></label>
+            </div>
+            <div class="nav-tabs-custom" *ngIf="totalResgistros > 0">
               <ul class="nav nav-tabs ">
                 <li class="pull-left header"><i class="fa fa-th"></i> Questão {{numQuestaoAtual}} de {{totalResgistros}} </li>
                 <li class="active"><a href="#tab_questao" data-toggle="tab">Questão</a></li>
