@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SharedService } from './services/shared.service';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'controle-estudos';
+
+  showTemplate: boolean = false;
+  public shared: SharedService;
+
+  constructor(private userService: UsuarioService){
+    this.shared = SharedService.getInstance();
+  }
+
+  ngOnInit(){
+    this.shared.showTemplate.subscribe(
+      (show: boolean) => this.showTemplate = show
+    );
+  }
+
+  showContentWrapper(){
+    return {
+      'content-wrapper': this.shared.isLoggedIn()
+    }
+  }
+
 }

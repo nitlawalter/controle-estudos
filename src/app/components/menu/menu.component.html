@@ -23,13 +23,13 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a [routerLink]="['/disciplina-list']"><i class="fa fa-pencil"></i> Disciplina</a></li>
-          <li><a [routerLink]="['/assunto-list']"><i class="fa fa-pencil"></i> Assunto</a></li>
-          <li><a [routerLink]="['/topico-list']"><i class="fa fa-pencil"></i> Tópico</a></li>
+          <li *ngIf="shared.user?.perfil == 'ADMIN'"><a [routerLink]="['/disciplina-list']"><i class="fa fa-pencil"></i> Disciplina</a></li>
+          <li *ngIf="shared.user?.perfil == 'ADMIN'"><a [routerLink]="['/assunto-list']"><i class="fa fa-pencil"></i> Assunto</a></li>
+          <li *ngIf="shared.user?.perfil == 'ADMIN'"><a [routerLink]="['/topico-list']"><i class="fa fa-pencil"></i> Tópico</a></li>
           <li><a [routerLink]="['/questao-list']"><i class="fa fa-pencil"></i> Questão</a></li>
           <li><a [routerLink]="['/estatistica-list']"><i class="fa fa-pencil"></i> Estatística</a></li>
           <li><a [routerLink]="['/meta-list']"><i class="fa fa-pencil"></i> Metas</a></li>
-          <li><a href="#"><i class="fa fa-circle-o"></i> Usuário</a></li>
+          <li *ngIf="shared.user?.perfil == 'ADMIN'"><a href="#"><i class="fa fa-circle-o"></i> Usuário</a></li>
         </ul>
       </li>
 
@@ -78,7 +78,7 @@
           <li><a href="http://www.planalto.gov.br/ccivil_03/decreto-lei/Del2266.htm" target="_blank"><i class="fa fa-sticky-note-o"></i>Lei 2.266</a></li>
           <li><a href="http://www.planalto.gov.br/ccivil_03/leis/lcp/Lcp94.htm" target="_blank"><i class="fa fa-sticky-note-o"></i>Lei 94 - RIDE</a></li>
           <li><a href="http://www.planalto.gov.br/ccivil_03/_Ato2011-2014/2011/Decreto/D7469.htm" target="_blank"><i class="fa fa-sticky-note-o"></i>Dec. 7.469 - RIDE</a></li>
-          
+
         </ul>
       </li>
 

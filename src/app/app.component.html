@@ -1,9 +1,9 @@
-<app-header></app-header>
-<app-menu></app-menu>
+<app-header [hidden]="!showTemplate"></app-header>
+<app-menu [hidden]="!showTemplate"></app-menu>
 
-<div class="content-wrapper">
+<div [ngClass]="showContentWrapper()">
 
-  <section class="content-header">
+  <section class="content-header" [hidden]="!showTemplate">
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
       <li class="active">Página inicial</li>
@@ -16,5 +16,5 @@
 
 </div>
 
-<app-footer></app-footer>
+<app-footer [hidden]="!showTemplate"></app-footer>
 

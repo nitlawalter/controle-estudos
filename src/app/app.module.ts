@@ -1,3 +1,6 @@
+import { SharedService } from './services/shared.service';
+import { AuthGuard } from './components/security/auth.guard';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormDebugComponent } from './shared/form-debug/form-debug.component';
 import { InputComponent } from './shared/input/input.component';
 import { DisciplinaListComponent } from './components/disciplina-list/disciplina-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AssuntoListComponent } from './components/assunto-list/assunto-list.component';
 import { TopicoListComponent } from './components/topico-list/topico-list.component';
@@ -27,6 +30,8 @@ import { RevisaoDisciplinaComponent } from './components/revisao-disciplina/revi
 import { RevisaoAssuntoComponent } from './components/revisao-assunto/revisao-assunto.component';
 import { MetaComponent } from './components/meta/meta.component';
 import { MetaListComponent } from './components/meta-list/meta-list.component';
+import { LoginComponent } from './components/security/login/login.component';
+import { AuthInterceptor } from './components/security/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,8 @@ import { MetaListComponent } from './components/meta-list/meta-list.component';
     RevisaoDisciplinaComponent,
     RevisaoAssuntoComponent,
     MetaComponent,
-    MetaListComponent
+    MetaListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,15 @@ import { MetaListComponent } from './components/meta-list/meta-list.component';
     HttpClientModule,
     ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    UsuarioService,
+    AuthGuard,
+    SharedService,
+    { provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

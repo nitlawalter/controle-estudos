@@ -16,32 +16,35 @@ import { MetaComponent } from './components/meta/meta.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MetaListComponent } from './components/meta-list/meta-list.component';
+import { LoginComponent } from './components/security/login/login.component';
+import { AuthGuard } from './components/security/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'home', component: HomeComponent},
-  { path: 'disciplina', component: DisciplinaComponent},
-  { path: 'disciplina/:id', component: DisciplinaComponent},
-  { path: 'disciplina-list', component: DisciplinaListComponent},
-  { path: 'assunto', component: AssuntoComponent},
-  { path: 'assunto/:id', component: AssuntoComponent},
-  { path: 'assunto-list', component: AssuntoListComponent},
-  { path: 'topico', component: TopicoComponent},
-  { path: 'topico/:id', component: TopicoComponent},
-  { path: 'topico-list', component: TopicoListComponent},
-  { path: 'questao', component: QuestaoComponent},
-  { path: 'questao/:id', component: QuestaoComponent},
-  { path: 'questao-list', component: QuestaoListComponent},
-  { path: 'estatistica', component: EstatisticaComponent},
-  { path: 'estatistica/:id', component: EstatisticaComponent},
-  { path: 'estatistica-list', component: EstatisticaListComponent},
-  { path: 'revisao-disciplina', component: RevisaoDisciplinaComponent},
-  { path: 'revisao-assunto/:id', component: RevisaoAssuntoComponent},
-  { path: 'revisao/:id', component: RevisaoComponent},
-  { path: 'meta', component: MetaComponent},
-  { path: 'meta/:id', component: MetaComponent},
-  { path: 'meta-list', component: MetaListComponent}
+  { path: 'login' , component: LoginComponent },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'disciplina', component: DisciplinaComponent, canActivate: [AuthGuard]},
+  { path: 'disciplina/:id', component: DisciplinaComponent, canActivate: [AuthGuard]},
+  { path: 'disciplina-list', component: DisciplinaListComponent, canActivate: [AuthGuard]},
+  { path: 'assunto', component: AssuntoComponent, canActivate: [AuthGuard]},
+  { path: 'assunto/:id', component: AssuntoComponent, canActivate: [AuthGuard]},
+  { path: 'assunto-list', component: AssuntoListComponent, canActivate: [AuthGuard]},
+  { path: 'topico', component: TopicoComponent, canActivate: [AuthGuard]},
+  { path: 'topico/:id', component: TopicoComponent, canActivate: [AuthGuard]},
+  { path: 'topico-list', component: TopicoListComponent, canActivate: [AuthGuard]},
+  { path: 'questao', component: QuestaoComponent, canActivate: [AuthGuard]},
+  { path: 'questao/:id', component: QuestaoComponent, canActivate: [AuthGuard]},
+  { path: 'questao-list', component: QuestaoListComponent, canActivate: [AuthGuard]},
+  { path: 'estatistica', component: EstatisticaComponent, canActivate: [AuthGuard]},
+  { path: 'estatistica/:id', component: EstatisticaComponent, canActivate: [AuthGuard]},
+  { path: 'estatistica-list', component: EstatisticaListComponent, canActivate: [AuthGuard]},
+  { path: 'revisao-disciplina', component: RevisaoDisciplinaComponent, canActivate: [AuthGuard]},
+  { path: 'revisao-assunto/:id', component: RevisaoAssuntoComponent, canActivate: [AuthGuard]},
+  { path: 'revisao/:id', component: RevisaoComponent, canActivate: [AuthGuard]},
+  { path: 'meta', component: MetaComponent, canActivate: [AuthGuard]},
+  { path: 'meta/:id', component: MetaComponent, canActivate: [AuthGuard]},
+  { path: 'meta-list', component: MetaListComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
