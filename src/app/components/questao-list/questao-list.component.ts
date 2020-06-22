@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -30,6 +31,8 @@ export class QuestaoListComponent implements OnInit {
   disciplinaSelecionada: Disciplina;
   assuntoSelecionado: Assunto;
 
+  shared: SharedService;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -37,7 +40,9 @@ export class QuestaoListComponent implements OnInit {
     private topicoService: TopicoService,
     private serviceDisciplina: DisciplinaService,
     private serviceAssunto: AssuntoService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService) {
+      this.shared = SharedService.getInstance();
+     }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -143,7 +148,7 @@ export class QuestaoListComponent implements OnInit {
 
   pesquisarPorAssunto(id: number){
     console.log('pesquisando por assunto');
-    this.service.findByTopicoAssuntoId(id).subscribe(
+    this.service.findByTopicoAssuntoIdAndUsuario(id, this.shared.user.id).subscribe(
       (response: ResponseApi) => {
         this.lista = response.data;
         this.totalResgistros = this.lista?.length;
@@ -154,8 +159,8 @@ export class QuestaoListComponent implements OnInit {
   }
 
   pesquisarPorDisciplina(id: number){
-    console.log('pesquisando por disciplina');
-    this.service.findByTopicoAssuntoDisciplinaId(id).subscribe(
+    console.log('pesquisando por disciplina', id + ' - ', this.shared.user);
+    this.service.findByTopicoAssuntoDisciplinaIdAndUsuario(id, this.shared.user.id).subscribe(
       (response: ResponseApi) => {
         this.lista = response.data;
         this.totalResgistros = this.lista?.length;

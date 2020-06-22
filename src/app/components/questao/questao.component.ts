@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared.service';
 import { Questao } from 'src/app/model/questao.model';
 import { ResponseApi } from './../../model/response-api';
 import { QuestaoService } from './../../services/questao.service';
@@ -35,6 +36,7 @@ export class QuestaoComponent implements OnInit {
   contadorResumo: number = 0;
   contadorResumoRestam: number = 1000;
 
+  shared: SharedService;
 
   constructor(
     private fb: FormBuilder,
@@ -43,12 +45,14 @@ export class QuestaoComponent implements OnInit {
     private serviceTopico: TopicoService,
     private serviceDisciplina: DisciplinaService,
     private serviceAssunto: AssuntoService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.shared = SharedService.getInstance();
+    }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
       id: [null],
-      questao: [null, [Validators.required, Validators.maxLength(500)]],
+      questao: [null, [Validators.required, Validators.maxLength(1000)]],
       comentario: [null, [Validators.maxLength(1000)]],
       resumo: [null, [Validators.maxLength(1000)]],
       gabarito: [null, [Validators.required]],
@@ -89,7 +93,7 @@ export class QuestaoComponent implements OnInit {
   }
 
   salvar() {
-    this.questao = new Questao(null, '', null, null, null, null, false);
+    this.questao = new Questao(null, '', null, null, null, null, false, null);
     this.questao.id = this.formulario.get('id').value;
     this.questao.questao = this.formulario.get('questao').value;
     this.questao.comentario = this.formulario.get('comentario').value;
@@ -97,6 +101,7 @@ export class QuestaoComponent implements OnInit {
     this.questao.gabarito = this.formulario.get('gabarito').value;
     this.questao.topico = this.formulario.get('topico').value;
     this.questao.revisao = this.formulario.get('revisao').value;
+    this.questao.usuario = this.shared.user;
 
     this.service.inserirOuEditar(this.questao)
       .subscribe(
@@ -144,6 +149,7 @@ export class QuestaoComponent implements OnInit {
       (response: ResponseApi) => {
         this.assuntos = response.data;
         console.log(this.assuntos);
+        this.findTopicosByAssunto();
       }, erro => {
         console.log('Erro no FindAll...' + erro);
       }

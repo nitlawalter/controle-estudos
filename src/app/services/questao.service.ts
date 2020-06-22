@@ -36,8 +36,12 @@ export class QuestaoService {
     return this.http.get(`${HOST_API}/api/questoes/topico/assunto/${id}`);
   }
 
-  findByTopicoAssuntoDisciplinaId(id: number){
-    return this.http.get(`${HOST_API}/api/questoes/topico/assunto/disciplina/${id}`);
+  findByTopicoAssuntoIdAndUsuario(idAssunto: number, idUsuario: number){
+    return this.http.get(`${HOST_API}/api/questoes/topico/assuntoAndUsuario/${idAssunto}/${idUsuario}`);
+  }
+
+  findByTopicoAssuntoDisciplinaIdAndUsuario(id: number, idUsuario: number){
+    return this.http.get(`${HOST_API}/api/questoes/topico/assunto/disciplinaAndUsuario/${id}/${idUsuario}`);
   }
 
   deletar(id: number){

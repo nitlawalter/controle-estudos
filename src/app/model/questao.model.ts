@@ -1,4 +1,5 @@
 import { Topico } from './topico.model';
+import { Usuario } from './usuario.model';
 
 export class Questao {
 
@@ -9,7 +10,8 @@ export class Questao {
         public resumo: string,
         public gabarito: string,
         public topico: Topico,
-        public revisao: boolean
+        public revisao: boolean,
+        public usuario: Usuario
     ){}
 
 }

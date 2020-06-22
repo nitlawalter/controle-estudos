@@ -1,3 +1,4 @@
+import { Usuario } from 'src/app/model/usuario.model';
 
 export class Meta {
 
@@ -6,7 +7,8 @@ export class Meta {
         public nome: string,
         public dia: string,
         public finalizada: boolean,
-        public estudo: string
+        public estudo: string,
+        public usuario: Usuario
     ){}
 
 }

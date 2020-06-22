@@ -36,6 +36,10 @@ export class MetaService {
     return this.http.get(`${HOST_API}/api/metas/dia/${dia}`);
   }
 
+  findMetasByDiaAndUsuario(dia: string, idUsuario: number){
+    return this.http.get(`${HOST_API}/api/metas/diaAndUsuario/${dia}/${idUsuario}`);
+  }
+
   deletar(id: number){
     return this.http.delete(`${HOST_API}/api/metas/${id}`);
   }

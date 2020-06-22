@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared.service';
 import { Meta } from 'src/app/model/meta.model';
 import { ResponseApi } from './../../model/response-api';
 import { MetaService } from './../../services/meta.service';
@@ -19,13 +20,17 @@ export class MetaComponent implements OnInit {
   meta: Meta;
   msgCadastro: string;
   alert: string;
-  
+
+  shared: SharedService;
+
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: MetaService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.shared = SharedService.getInstance();
+    }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -63,11 +68,12 @@ export class MetaComponent implements OnInit {
   }
 
   salvar() {
-    this.meta = new Meta(null, null, null, false, null);
+    this.meta = new Meta(null, null, null, false, null, null);
     this.meta.id = this.formulario.get('id').value;
     this.meta.nome = this.formulario.get('nome').value;
     this.meta.dia = this.formulario.get('dia').value;
     this.meta.estudo = this.formulario.get('estudo').value;
+    this.meta.usuario = this.shared.user;
 
     console.log('SALVANDO: ', this.meta);
 

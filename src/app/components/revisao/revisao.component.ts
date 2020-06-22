@@ -1,3 +1,4 @@
+import { SharedService } from './../../services/shared.service';
 import { Questao } from 'src/app/model/questao.model';
 import { ResponseApi } from './../../model/response-api';
 import { QuestaoService } from './../../services/questao.service';
@@ -43,6 +44,8 @@ export class RevisaoComponent implements OnInit {
   mapQuestoes = new Map<number, Questao>();
   numQuestaoAtual: number = 1;
 
+  shared: SharedService;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -50,7 +53,9 @@ export class RevisaoComponent implements OnInit {
     private serviceTopico: TopicoService,
     private serviceDisciplina: DisciplinaService,
     private serviceAssunto: AssuntoService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) {
+      this.shared = SharedService.getInstance();
+     }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
@@ -70,18 +75,18 @@ export class RevisaoComponent implements OnInit {
 
     });
 
-    let id:number = this.route.snapshot.params['id'];
-    this.findByTopicoAssuntoId(id);
+    let id: number = this.route.snapshot.params['id'];
+    this.findQuestoesByTopicoAssuntoId(id, this.shared.user.id);
 
   }
 
-  findByTopicoAssuntoId(id: number){
-    this.service.findByTopicoAssuntoId(id).subscribe(
+  findQuestoesByTopicoAssuntoId(idAssunto: number, idUsuario: number){
+    this.service.findByTopicoAssuntoIdAndUsuario(idAssunto, idUsuario).subscribe(
       (responseApi: ResponseApi) => {
         this.questoes = responseApi.data;
         this.totalResgistros = this.questoes?.length;
         console.log('registros ', this.totalResgistros);
-        
+
         if (this.totalResgistros > 0){
           let i: number = 1;
           this.questoes.forEach(element => {
@@ -94,8 +99,8 @@ export class RevisaoComponent implements OnInit {
           this.idDisciplina = this.questao.topico.assunto.disciplina.id;
           this.preencherFormulario(this.questao);
         } else {
-          this.pesquisarAssuntoPorId(id);            
-        }      
+          this.pesquisarAssuntoPorId(idAssunto);
+        }
 
       }, erro => {
        console.log('erro: ', erro);
