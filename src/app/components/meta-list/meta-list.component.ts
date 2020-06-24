@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ResponseApi } from './../../model/response-api';
 import { MetaService } from 'src/app/services/meta.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-meta-list',
@@ -24,19 +25,21 @@ export class MetaListComponent implements OnInit {
   listaDias = ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO', 'DOMINGO'];
   listaEstudo = ['Questões', 'Lei seca', 'Resumo', 'Simulado', 'Redação'];
 
-
+  shared: SharedService;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: MetaService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService) {
+      this.shared = SharedService.getInstance();
+     }
 
   ngOnInit(): void {
     this.formulario = this.fb.group({
       dia: [null, [Validators.required]]
     });
-    
+
   }
 
   findAll() {
@@ -92,7 +95,7 @@ export class MetaListComponent implements OnInit {
     this.diaSelecionado = this.formulario.get('dia').value;
     console.log('selecionou: ', this.diaSelecionado);
 
-    this.service.findMetasByDia(this.diaSelecionado).subscribe(
+    this.service.findMetasByDiaAndUsuario(this.diaSelecionado, this.shared.user.id).subscribe(
       (response: ResponseApi) => {
         this.lista = response.data;
         this.totalResgistros = this.lista?.length;

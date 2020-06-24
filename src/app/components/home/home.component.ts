@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   findMetasByDia(dia: string) {
     console.log('buscando metas por dia: ', dia);
     console.log('usuario: ', this.shared.user);
-    this.service.findMetasByDia(dia).subscribe(
+    this.service.findMetasByDiaAndUsuario(dia, this.shared.user.id).subscribe(
       (response: ResponseApi) => {
         if (dia === 'SEGUNDA'){
           this.listaSegunda = response.data;
