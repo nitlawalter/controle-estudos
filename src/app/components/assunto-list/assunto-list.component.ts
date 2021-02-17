@@ -38,6 +38,7 @@ export class AssuntoListComponent implements OnInit {
     this.formulario = this.fb.group({
       disciplina: [null, [Validators.required]]
     });
+    
     this.findAllDisciplinas();
   }
 
